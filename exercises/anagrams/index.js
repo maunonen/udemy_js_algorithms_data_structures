@@ -9,6 +9,53 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
+
+    return cleanString(stringA) === cleanString(stringB); 
+
+}
+function cleanString (str){
+    return  str
+                .replace(/[^\w]/g, "")
+                .toLowerCase()
+                .split('')
+                .sort()
+                .join(''); 
+}
+
+// anagrams solution 1 
+
+function anagramsVar1(stringA, stringB) {
+
+
+    // Create charMap of String amd clear string
+    const buildCharMap  = (str) => {
+        const charMap = {}; 
+        for (let char of str.replace(/[^\w]/g, "").toLowerCase()){ 
+            charMap[char]= charMap[char] + 1 || 1; 
+        }
+        return charMap; 
+    }
+
+    const aCharMap = buildCharMap(stringA)
+    const bCharMap = buildCharMap(stringB); 
+
+    // get the lenght of charmap
+    if (Object.keys(aCharMap).length !== Object.keys(bCharMap).length ){
+        return false; 
+    } 
+
+    for (let char in aCharMap){
+        if((aCharMap[char]) !== bCharMap[char] ){
+            return false;   
+        }
+    }
+    return true; 
+}
+
+
+
+
+function anagramsMySolution(stringA, stringB) {
     
     // reg exp using regExp 
     // ot lower case 
@@ -52,7 +99,6 @@ function anagrams(stringA, stringB) {
         // Are multi deminesional Array typeOf Object 
         // therefore for in loop 
         for (let item in arr){
-            item; 
             count ++; 
         }
         return count; 
@@ -69,6 +115,6 @@ function anagrams(stringA, stringB) {
 
 }
 
-console.log(anagrams("One one",  "One one c"));
+console.log(anagramsMySolution("One one",  "One one c"));
 
 module.exports = anagrams;
