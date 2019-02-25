@@ -17,6 +17,30 @@
 //       '### '
 //       '####'
 
+function steps(n, row = 0, stair = '') {
+    
+    if (n === row ){
+        return ; 
+    }
+    if (n === stair.length) {
+        console.log(stair); 
+        return steps(n , row +1 ); 
+    }
+
+    
+    if (stair.length <= row ){
+        stair += '#'; 
+    } else {
+        stair += ' ';  
+    }
+    //const add = stair.length <= row ? '#' : ' '; 
+    //steps(n , row, stair +add );  
+
+    steps(n , row, stair);  
+}
+
+// MY SOLUTION RECURSION
+
 function steps(n) {
 
    
@@ -25,12 +49,8 @@ function steps(n) {
     let strSpace = ''; 
 
     const printTable = (row) => {
-        if (row === 0){ 
-            return 
-        }
+        if (row === 0){ return }
         printRow(n - row  + 1 ); 
-        //printSymbol(n - row  + 1, '#'); 
-        //printSymbol( row  -1, ' '); 
         printSpace(row - 1); 
         console.log(strRow + strSpace ); 
         strSpace = ''; 
@@ -41,26 +61,18 @@ function steps(n) {
 
     
     const printSpace = (num) => {
-        
-        if (num === 0 ){
-            return strSpace; 
-        } 
+        if (num === 0 ){ return strSpace; } 
         strSpace = strSpace +  ' '; 
         printSpace(num - 1); 
-        
     }
 
     const printRow = (symbol ) => {
-        if (symbol === 0) {
-            return strRow;
-        }
+        if (symbol === 0) { return strRow;}
         strRow = strRow +  '#'; 
         printRow(symbol - 1);
     } 
     printTable(n);  
 }
-
- 
 
 
 
