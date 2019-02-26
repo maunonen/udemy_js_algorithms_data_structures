@@ -13,7 +13,20 @@
 
 
 // linear runtime complexity 
-function fib (n){
+
+function fib(n){
+
+    if (n < 2 ){
+     
+        return n ; 
+        
+    }    
+    return  fib(n-1) + fib(n - 2);
+}
+
+//Tutor Iterative solution 
+
+function fibIterative (n){
    const result = [0, 1] ; 
    for (let i = 2 ; i <=n; i++){
         const a = result[i -1 ]; 
@@ -22,6 +35,8 @@ function fib (n){
    }
    return result[n];
 }
+
+
 function fibMySolutions(n) {
     debugger; 
     let arrFib = [0, 1]; 
@@ -31,6 +46,6 @@ function fibMySolutions(n) {
     }
     return arrFib[arrFib.length-1]; 
 }
-fib(4);
+fib(39);
 
 module.exports = fib;

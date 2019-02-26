@@ -1,2 +1,5 @@
 LICENSE
 README.md
+node_modules
+exercises/node_modules
+/exercises/node_modules
