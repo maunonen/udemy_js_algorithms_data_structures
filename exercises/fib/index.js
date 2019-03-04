@@ -14,7 +14,42 @@
 
 // linear runtime complexity 
 
-function fib(n){
+// Gnerics version of memoize
+function memoize (fn){
+    debugger;
+    // storage for result 
+    const cache = {};
+    //  anonuymus function 
+    return function (...args){
+        debugger; 
+        if (cache[args]){
+            return cache[args]; 
+        }
+
+        // Apply fn(slowFib) function to this (where this is anonoymus function) with arguments (an array of arguments)
+        debugger; 
+        const result = fn.apply(this, args); 
+        // save result to cache 
+        cache[args] = result; 
+        // return result 
+        return result; 
+    }
+} 
+
+function slowFib(n){
+
+    if (n < 2 ){
+     
+        return n ; 
+        
+    }    
+    return  fib(n-1) + fib(n - 2);
+}
+
+const fib = memoize(slowFib); 
+
+// not memoized function of  fibonacci 
+function fibRegular(n){
 
     if (n < 2 ){
      
@@ -46,6 +81,6 @@ function fibMySolutions(n) {
     }
     return arrFib[arrFib.length-1]; 
 }
-fib(39);
+fib(5);
 
 module.exports = fib;
