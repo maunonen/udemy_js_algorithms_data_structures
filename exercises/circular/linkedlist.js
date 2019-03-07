@@ -4,8 +4,14 @@ class Node {
     this.next = next;
   }
 }
+class Car{
+  constructor (type){
+    this.type  = type; 
+  }
+}
 
 class LinkedList {
+
   constructor(values = []) {
     this.head = null;
 
@@ -175,4 +181,4 @@ class LinkedList {
   }
 }
 
-module.exports = { Node, LinkedList };
+module.exports = { Node, LinkedList, Car };

@@ -122,7 +122,7 @@ class LinkedList {
 
     getAt(index){
 
-        debugger; 
+        
         let counter = 0; 
         let tmp = this.head; 
 
@@ -146,11 +146,14 @@ class LinkedList {
         return null; 
     }
 
+
+
+
     removeAt(index) {
 
         // own solution 
         if (!this.head ){
-            return null; 
+            return ; 
         }
         if (this.head.next === null){
             return this.head = null; 
@@ -159,8 +162,70 @@ class LinkedList {
         }
         else {
             let previous = this.getAt(index - 1); 
+            if (!previous ){
+                return;  
+            }
             previous.next = this.getAt(index + 1); 
         }        
+    }
+    
+
+    insertAt (data, index){
+
+        if(!this.head ){
+            this.head = new Node (data); 
+            return; 
+        } if (index === 0 ){
+            this.head = new Node(data, this.head); 
+            return ; 
+        } 
+            const previous = this.getAt(index - 1) || this.getLast(); 
+            const node = new Node(data, previous.next); 
+            previous.next = node; 
+        
+    }
+     // oun solution 
+    /*     insertAt (data, index = undefined){
+        debugger; 
+        if (!this.head || index === 0){
+            this.insertFirst(data); 
+            return;
+        } else if (index >= this.size() || index === undefined){
+            this.insertLast(data); 
+            return ;
+        } 
+        else {
+            const previous = this.getAt(index - 1) ; 
+            const insertedNode = new Node(data); 
+            const next = this.getAt(index ); 
+
+            previous.next = insertedNode; 
+            
+            if (next){
+                insertedNode.next = next; 
+            }
+            
+        }
+
+    } */
+
+    forEach(fn){
+        let node = this.head; 
+        let counter = 0; 
+        while (node){
+            fn(node, counter); 
+            node = node.next; 
+            counter ++; 
+        }
+    }
+    
+
+    *[Symbol.iterator] (){
+        let node = this.head; 
+        while(node){
+            yield node; 
+            node = node.next; 
+        }
     }
 }
 
@@ -168,8 +233,15 @@ class LinkedList {
 
 const nodeOne = new Node(5); 
 const list =  new LinkedList(); 
-list.head = nodeOne; 
+list.insertAt(3,3); 
+list.insertAt(66);
+list.insertAt(45, 1); 
+//list.head = nodeOne; 
+debugger;
+list.insertAt(3, 3); 
+list.insertAt(2, 1); 
 list.insertFirst(4); 
+
 list.insertFirst(10); 
 list.insertFirst(15); 
 list.getAt(2); 

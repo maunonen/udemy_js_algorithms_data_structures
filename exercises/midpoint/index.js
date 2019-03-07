@@ -12,6 +12,23 @@
 //   l.insertLast('c')
 //   midpoint(l); // returns { data: 'b' }
 
-function midpoint(list) {}
+
+//import {LinkedList } from './linkedlist.js'; 
+const LinkedList = require('./linkedlist.js');
+
+function midpoint(list) {
+
+    // slow go forward for one step  
+    // fast go forward for two step 
+
+    let fast = list.head; 
+    let slow = list.head; 
+    
+    while(fast.next && fast.next.next){
+        slow = slow.next; 
+        fast = fast.next.next; 
+    }
+    return  slow; 
+}
 
 module.exports = midpoint;

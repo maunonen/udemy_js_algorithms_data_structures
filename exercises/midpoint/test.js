@@ -3,6 +3,7 @@ const L = require('./linkedlist');
 const Node = L.Node;
 const LinkedList = L.LinkedList;
 
+
 test('Midpoint is a function', () => {
   expect(typeof midpoint).toEqual('function');
 });
